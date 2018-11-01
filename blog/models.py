@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 
@@ -27,3 +28,16 @@ class Entry(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(choices=STATUS_SET, default=STATUS_DRAFT, max_length=8)
     author = models.ForeignKey(User, related_name='entries', on_delete=models.CASCADE)
+
+class Raspberry_pi(models.Model):
+   # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) #Maybe UUIDField
+   # id = AutoField()
+    MAC_address = models.CharField(max_length=128)
+    IP_address = models.GenericIPAddressField(default='127.0.0.1')
+    Host_name = models.CharField(max_length=128, default='TEST')
+
+   # created_at = models.DateTimeField(auto_now_add=True)
+   # updated_at = models.DateTimeField(auto_now=True)
+
+   # name = models.CharField(max_length=32)
+   # mail = models.EmailField()
