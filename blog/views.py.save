@@ -1,0 +1,67 @@
+# coding: utf-8
+
+import django_filters
+from rest_framework import viewsets, filters
+
+from .models import User, Entry, Raspberry_pi
+from .serializer import UserSerializer, EntrySerializer, Raspberry_piSerializer
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+#
+#from rest_framework.parsers import JSONParser, MultiPartParser
+#from rest_framework_files.viewsets import ImportExportModelViewSet
+from django.http import HttpResponse
+import io
+#
+
+
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class EntryViewSet(viewsets.ModelViewSet):
+    queryset = Entry.objects.all()
+    serializer_class = EntrySerializer
+
+
+class TaskGet(APIView):
+    def get(self, request, format=None):
+        return Response("hallo")
+
+class Raspberry_piViewSet(viewsets.ModelViewSet):
+    queryset = Raspberry_pi.objects.all()
+    serializer_class = Raspberry_piSerializer
+
+#Added
+    # if filename is not provided, the view name will be used as the filename
+   #filename = 'blog'
+    # renderer classes used to render your content. will determine the file type of the download
+   # renderer_classes = (JSONParser, )
+   # parser_classes = (MultiPartParser, )
+    # parser classes used to parse the content of the uploaded file
+   # file_content_parser_classes = (JSONParser, )
+
+
+def download(request):
+    output = io.StringIO()
+    output.write("First line.\n")
+    response = HttpResponse(output.getvalue(), content_type="text/plain")
+    response["Content-Disposition"] = "filename=text.txt"
+    return response
+
+class FileGet(APIView):
+   # def get(self, request, format=None):
+    #    return Response("hallo")
+
+   def download(request):
+    output = io.StringIO()
+     output.write("First line.\n")
+     response = HttpResponse(output.getvalue(), content_type="text/plain")
+ #    response["Content-Disposition"] = "filename=text.txt"
+#     return response
+

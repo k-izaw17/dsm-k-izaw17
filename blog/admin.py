@@ -1,16 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User, Entry, Raspberry_pi
+from .models import Raspberry_pi
 
-
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    pass
-
-@admin.register(Entry)
-class Entry(admin.ModelAdmin):
-    pass
 
 @admin.register(Raspberry_pi)
 class Raspberry_pi(admin.ModelAdmin):

@@ -130,8 +130,8 @@ REST_FRAMEWORK = {
 
 
 
-#設定ファイルのパス設定
-MEDIA_URL = '/document/'
+######################
+MEDIA_URL = '/home/k-izaw17/test'
 
 MEDIA_ROOT = (
     os.path.join(BASE_DIR, 'document')
