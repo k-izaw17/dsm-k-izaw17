@@ -11,44 +11,40 @@ from .serializer import  Raspberry_piSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-#
-from rest_framework import generics
-#
-
+#FILE
+from rest_framework.parsers import JSONParser, MultiPartParser
+from rest_framework_files.viewsets import ImportExportModelViewSet
 
 #
 from django.http import HttpResponse
+import io
+import xlwt
 import os
 from django.conf import settings
-#
 
-from rest_framework.decorators import api_view
+
+#
 
 
 
 class FileGet(APIView):
+#class FileGet(RetrieveAPIView)
  def get(self, request, format=None):
   #file_path = os.path.join(settings.MEDIA_ROOT, "5.jpeg")
-  file_path = os.path.join(settings.MEDIA_ROOT, "test.txt")
+  #file_path = os.path.join(settings.MEDIA_ROOT, "test.txt")
   FilePointer = open(file_path,"rb")
-  response = HttpResponse(FilePointer,content_type='application/msword')
-  #response = HttpResponse(FilePointer,content_type='image/jpeg')
+ # response = HttpResponse(FilePointer,content_type='application/msword')
+  response = HttpResponse(FilePointer,content_type='image/jpeg')
   response['Content-Disposition'] = 'filename=test.txt'
 
   return response
-
- #return Response("file download")
+  #return Response("file download!!")
 
 
 class Raspberry_piViewSet(viewsets.ModelViewSet):
     queryset = Raspberry_pi.objects.all()
     serializer_class = Raspberry_piSerializer
-    filter_fields = ('id', 'MAC_address', 'IP_address', 'Host_name', 'Date')
   #  @action
 
 
-#class Raspberry_piViewSet(generics.ListCreateAPIView):
-#    queryset = Raspberry_pi.objects.all()
-#    serializer_class = Raspberry_piSerializer
-#    filter_fields = ('MAC_address', 'IP_address', 'Host_name', 'Date')
 

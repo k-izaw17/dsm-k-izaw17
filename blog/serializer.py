@@ -8,5 +8,5 @@ from .models import Raspberry_pi
 class Raspberry_piSerializer(serializers.ModelSerializer):
   class Meta:
    model = Raspberry_pi
-   #fields = ('IP_address', 'Host_name', 'MAC_address',) # 追加要素アリ
+   #fields = ('IP_address', 'Host_name', 'MAC_address', 'Date') # 追加要素アリ
    fields = '__all__'

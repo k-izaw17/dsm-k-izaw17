@@ -35,6 +35,7 @@ urlpatterns = [
    url(r'api/get',views.FileGet.as_view(),name='file-get'),
    #
    url(r'^document/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+   url(r'api/download/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
    #
 ]
 
